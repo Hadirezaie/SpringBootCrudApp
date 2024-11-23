@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/api")
 public class EmployeeController {
 	
 	private final EmployeeService employeeService;
@@ -26,7 +26,7 @@ public class EmployeeController {
 	}
 
 
-	@GetMapping("all")
+	@GetMapping("/employees")
 	public ResponseEntity<List<Employee>>  getAllEmployees(){
 		List<Employee> employees= employeeService.findAllEmployees();
 		return new ResponseEntity<>(employees, HttpStatus.OK);
@@ -40,7 +40,7 @@ public class EmployeeController {
 		
 	}
 	
-	@PostMapping("/add")
+	@PostMapping("/employees")
 	public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee){
 		Employee newEmployee = employeeService.addEmployee(employee);
 		return new ResponseEntity<>(newEmployee, HttpStatus.CREATED);
